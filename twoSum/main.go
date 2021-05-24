@@ -6,15 +6,15 @@ func twoSum(nums []int, target int) []int {
 	if len(nums) == 0 {
 		return nil
 	}
-	p := make([]int, len(nums))
+	// p := make([]int, len(nums))
+	p := make(map[int]int)
 	for i := 0; i < len(nums); i++ {
-		p[i] = target - nums[i]
-		for j := i + 1; j < len(nums); j++ {
-			if p[i] == nums[j] {
-				res := []int{i, j}
-				return res
-			}
+		_, ok := p[target-nums[i]]
+		if ok {
+			res := []int{p[target-nums[i]], i}
+			return res
 		}
+		p[nums[i]] = i
 	}
 	return nil
 }
